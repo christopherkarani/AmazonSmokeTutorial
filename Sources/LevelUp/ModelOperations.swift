@@ -11,10 +11,11 @@ import SmokeOperationsHTTP1
 
 public enum ModelOperations: String, Hashable, OperationIdentity {
     case topicGet
+    case topicPost
     
     public var operationPath: String {
         switch self {
-        case .topicGet: return "/topics"
+        case .topicGet, .topicPost: return "/topics"
         }
     }
 }
@@ -55,6 +56,10 @@ public func addOperations<SelectorType: SmokeHTTP1HandlerSelector>(
     selector.addHandlerForOperation(.topicGet,
                                     httpMethod: .GET,
                                     operation: topicsGetOperation,
+                                    allowedErrors: [(ErrorTypes.serverError, 500)])
+    selector.addHandlerForOperation(.topicPost,
+                                    httpMethod: .GET,
+                                    operation: topicPostOperation,
                                     allowedErrors: [(ErrorTypes.serverError, 500)])
 }
 

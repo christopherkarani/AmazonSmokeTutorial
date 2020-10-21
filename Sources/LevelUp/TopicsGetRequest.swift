@@ -19,10 +19,7 @@ import SmokeOperationsHTTP1Server
 ///   - context: Input Context
 /// - Throws: Throws a Server Error
 /// - Returns: <#description#>
-func topicsGetOperation(
-    input: TopicsGetRequest,
-    context: ApplicationContext) throws -> TopicGetResponse {
-    
+func topicsGetOperation(input: TopicsGetRequest, context: ApplicationContext) throws -> TopicGetResponse {
     return TopicGetResponse(topics: context.topicStore.topics)
 }
 
