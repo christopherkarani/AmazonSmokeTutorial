@@ -33,9 +33,10 @@
 import Foundation
 
 public class TopicStore {
-  public func addTopic(_ topic: Topic) {
-
-  }
+    var topics: [Topic] = []
+    public func addTopic(_ topic: Topic) {
+        topics.append(topic)
+    }
 }
 
 public struct ApplicationContext {
