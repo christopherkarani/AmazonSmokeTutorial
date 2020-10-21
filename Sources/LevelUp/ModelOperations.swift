@@ -58,7 +58,7 @@ public func addOperations<SelectorType: SmokeHTTP1HandlerSelector>(
                                     operation: topicsGetOperation,
                                     allowedErrors: [(ErrorTypes.serverError, 500)])
     selector.addHandlerForOperation(.topicPost,
-                                    httpMethod: .GET,
+                                    httpMethod: .POST,
                                     operation: topicPostOperation,
                                     allowedErrors: [(ErrorTypes.serverError, 500)])
 }
