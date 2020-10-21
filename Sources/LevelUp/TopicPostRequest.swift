@@ -11,13 +11,25 @@ func topicPostOperation(input: TopicPostRequest,
                         context: ApplicationContext) throws -> TopicsPostResponse {
     let topic = Topic(name: input.name, duration: input.duration)
     context.topicStore.addTopic(topic)
-    return TopicsPostResponse()
+    return TopicsPostResponse(currentTopics: context.topicStore.topics)
 }
 
 public struct TopicPostRequest: ValidatableCodable, Equatable {
     public var name: String
     public var duration: Int
-    public func validate() throws {}
+    public func validate() throws {
+        guard !name.isEmpty else {
+            throw SmokeOperationsError.validationError(
+                reason: "Name cannot be empty"
+            )
+        }
+        
+        guard duration > 0 else {
+            throw SmokeOperationsError.validationError(
+                reason: "Duration must be positive"
+            )
+        }
+    }
 }
 
 

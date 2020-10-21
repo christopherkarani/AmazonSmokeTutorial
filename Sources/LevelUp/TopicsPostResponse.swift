@@ -12,6 +12,8 @@ import SmokeOperationsHTTP1Server
 
 
 public struct TopicsPostResponse: Codable, Validatable, Equatable {
+    // the topics that was just added
+    var currentTopics: [Topic]
     public func validate() throws {}
 }
 
