@@ -22,3 +22,11 @@ public struct TopicGetResponse: ValidatableCodable, Equatable {
     
     public func validate() throws {}
 }
+
+
+/// Represents The Output from an operation for a `HTTP` response
+extension TopicGetResponse: OperationHTTP1OutputProtocol {
+    public var bodyEncodable: TopicGetResponse? { self }
+    
+    public var additionalHeadersEncodable: TopicGetResponse? { nil }
+}

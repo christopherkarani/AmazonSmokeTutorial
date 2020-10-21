@@ -21,8 +21,7 @@ import SmokeOperationsHTTP1Server
 /// - Returns: <#description#>
 func topicsGetOperation(
     input: TopicsGetRequest,
-    context: ApplicationContext
-) throws -> TopicGetResponse {
+    context: ApplicationContext) throws -> TopicGetResponse {
     
     return TopicGetResponse(topics: context.topicStore.topics)
 }
@@ -31,4 +30,15 @@ func topicsGetOperation(
 /* The `Validatable` Protocol is required for input requests and output response types */
 struct TopicsGetRequest: Codable, Validatable, Equatable {
     func validate() throws {}
+}
+
+extension TopicsGetRequest: OperationHTTP1InputProtocol {
+    static func compose(
+        queryDecodableProvider: () throws -> TopicsGetRequest,
+        pathDecodableProvider: () throws -> TopicsGetRequest,
+        bodyDecodableProvider: () throws -> TopicsGetRequest,
+        headersDecodableProvider: () throws -> TopicsGetRequest) throws -> TopicsGetRequest {
+        
+        try queryDecodableProvider()
+    }
 }
